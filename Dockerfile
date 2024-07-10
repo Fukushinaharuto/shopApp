@@ -11,11 +11,16 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME "/opt/composer"
 ENV PATH "$PATH:/opt/composer/vendor/bin"
 
-RUN apt-get update
-RUN apt-get -y install git
-RUN apt-get -y install unzip
-RUN apt-get -y install libzip-dev
-RUN docker-php-ext-install zip
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    libzip-dev \
+    nodejs \
+    npm \
+    && docker-php-ext-install bcmath zip
+
+RUN npm install
+RUN npm run build
 
 RUN composer install
 
