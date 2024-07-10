@@ -13,7 +13,8 @@ export default defineConfig({
     ],
     
     server: {
-        hmr: {
+        port: 8000,
+        shop: {
             host: 'localhost',
         },
     },
