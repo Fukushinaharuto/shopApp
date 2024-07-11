@@ -19,10 +19,11 @@ RUN apt-get update && apt-get install -y \
     npm \
     && docker-php-ext-install bcmath zip
 
-RUN npm install
-RUN npm run build
 
-RUN composer install
+    RUN composer require laravel/breeze
+    RUN php artisan breeze:install --dev
+    RUN npm install
+    RUN composer install
 
 EXPOSE 8000
 CMD ["php","artisan","serve","--host","0.0.0.0"]
