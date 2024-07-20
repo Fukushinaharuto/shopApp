@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('role_flag')->default(1)->comment('0=編集者,1=未ログイン者,2=ログイン者');
+            $table->integer('role_flag')->default(1)->comment('0=編集者, 1=未ログイン者, 2=ログイン者');
         });
     }
 
@@ -22,7 +22,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role');
+            if (Schema::hasColumn('users', 'role_flag')) {
+                $table->dropColumn('role_flag');
+            }
         });
     }
 };
