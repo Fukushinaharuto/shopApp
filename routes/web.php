@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StockController;
 
 Route::get('/', [StockController::class, 'index'])->name('stock.index');
+Route::get('/myCart', [StockController::class, 'myCart'])->name('stock.myCart');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
