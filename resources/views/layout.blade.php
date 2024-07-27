@@ -428,7 +428,7 @@ th {
 
 
         /* main.css */
-        @charset "utf-8";
+ 
 
 /*共通事項
 --------------------*/
@@ -466,29 +466,12 @@ a:hover{
 
 /*header
 -------------*/
-header{
-    padding: 20px 0;
-	display: flex;
-}
-header h1{
-	width: 50%;
-	
-}
-.main-nav ul{
-	display: flex;
-}
-.main-nav ul li{
-	margin-right: 30px;
-}
 
-.sns-nav ul{
-	display: flex;
-	width: 60%;
-	padding-top: 10px;
-}
-.sns-nav ul li{
-	margin-right: 10px;
-}
+
+	
+
+
+
 
 
 
@@ -497,50 +480,29 @@ header h1{
 main{
 	text-align: center;
 }
-h2{
-	font-size: 30px;
-	padding: 40px;
-}
-dl{
-	display: flex;
-}
-dt{
-	padding: 0 100px 20px 100px;
-}
-dd{
-	text-align: left;
-}
-strong{
-	font-weight: bold;
-}
-.more{
-	text-align: right;
-	text-decoration: underline;
-	padding: 30px 0 20px 0;
-}
-button{
-	background-color: white;
-	border:2px solid;
-	border-color: black;
-	padding: 15px 60px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 20px;
-	margin: 30px 30px;
-	cursor: pointer;
-}
 
 
 
-.menu ul{
-	display: flex;
-	padding-top: 20px;
-	
+
+.title_img, .title_text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.menu ul li{
-	width: 80%;
-	margin: 10px 30px;
+
+.title_img img {
+  max-width: 100%;
+  height: auto;
+}
+
+.title_text {
+  flex:1;
+  margin-left: 20px;
+}
+
+.title_text span {
+  transform: rotate(90deg);
+  white-space: nowrap;
 }
 
 /*footer
@@ -549,40 +511,25 @@ button{
 footer{
 	text-align: center;
 }
-.footer-nav ul{
-	display: flex;
-	padding-left: 400px;
-}
-.footer-nav ul li{
-	padding: 40px 20px;
-}
-.footer-logo{
-	padding: 0 0 30px 0;
-}
-.pec{
-	text-align: left;
-	padding-left: 210px;
-}
-.copy{
-	padding: 40px 0 20px 0;
-}
+
 
 
     </style>
-    <title>Document</title>
+    <title>まごころはーぶ</title>
 </head>
 <body>
-    <header class="wrapper header-contents">
-        <h1></h1>
-        <nav class="main-nav">
-            <ul>
-                <li>ホーム</li>
-                <li>人気ブレンド</li>
-                <li>ご利用案内</li>
-                <li>カート</li>
-            </ul>
-        </nav>
-    </header>
-    @yield('content')
+
+  @yield('content')
+  <main>
+    
+      <div class="title_img">
+        <img src="{{ asset('storage/images/78dffbe21976ee32400ca9b6883fbfeacfa534f1.jpg') }}" alt="まごころはーぶ">
+      </div>
+      <div class="title_text">
+        <span>magokoro herb 279</span>
+      </div>
+    
+  </main>
+  
 </body>
 </html>

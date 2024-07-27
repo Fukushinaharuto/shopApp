@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class UserStock extends Model
 {
     use HasFactory;
+    protected $table ='users_stocks';
+
+    protected $fillable = [
+        'merch_id', 'user_id',
+    ];
 }
