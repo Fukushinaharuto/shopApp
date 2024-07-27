@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -y \
     RUN php artisan breeze:install --dev
     RUN npm install
     RUN composer install
+    RUN npm dev
 
 EXPOSE 8000
 CMD ["php","artisan","serve","--host","0.0.0.0"]
