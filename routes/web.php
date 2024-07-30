@@ -12,6 +12,8 @@ Route::get('/dashbord', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/create', [StockController::class, 'create'])->name('stock.create');
+    Route::post('/stockAdd', [StockController::class, 'stockAdd'])->name('stockAdd');
     Route::get('/myCart', [StockController::class, 'myCart'])->name('stock.myCart');
     Route::post('/addMyCart', [StockController::class, 'addMyCart'])->name('stock.addMyCart');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

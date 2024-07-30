@@ -7,6 +7,7 @@
             <th>{{$stock->name}}</th>
             <td>{{$stock->price}}円</td>
             <td>{{$stock->explain}}</td>
+            <td>{{$stock->imagePath}}</td>
             <form action="addMyCart" method='post'>
                 @csrf
                 <input type="hidden" name="stock_id" value=" {{ $stock->id }}">
