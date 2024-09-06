@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- @vite(['resources/css/destyle.css', 'resources/css/main.css', 'resources/css/app.css']) -->
-    <style>
-/* destyle.css */
-
-/*! destyle.css v4.0.0 | MIT License | https://github.com/nicolas-cusan/destyle.css */
-
-/* Reset box-model and set borders */
-/* ============================================ */
-
+<x-app-layout>
+<style>
 *,
 ::before,
 ::after {
@@ -426,9 +414,8 @@ th {
 
 
 
-
         /* main.css */
- 
+
 
 /*共通事項
 --------------------*/
@@ -477,17 +464,20 @@ a:hover{
 
 /*main
 ---------------------*/
-main{
-	text-align: center;
+main {
+  text-align: center;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 
-
-
-.title_img, .title_text {
+.title_imag{
+    text-align: center;
   display: flex;
-  justify-content: center;
+  justify-content: center; /* コンテンツ全体を中央に配置 */
   align-items: center;
+
+  text-align: center;
 }
 
 .title_img img {
@@ -495,22 +485,36 @@ main{
   height: auto;
 }
 
-.title_text {
-  flex:1;
-  margin-left: 20px;
+
+
+
+.title_text h2 {
+  display: inline-block; /* 回転を適用するために必要 */
+  transform: rotate(90deg); /* 90度回転 */
+  white-space: nowrap; /* 文字の折り返しを防止 */
+  font-size: 50px;
+  margin-left: -170px /* 画像との間にスペースを追加 */
 }
 
-.title_text span {
-  transform: rotate(90deg);
-  white-space: nowrap;
+.title {
+  display: flex;
+
+  align-items: center;
 }
 
+.button{
+  appearance: none;
+  border: 0;
+  border-radius: 5px;
+  background: #4676D7;
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 16px;
+}
 /*footer
 -----------------------*/
 
-footer{
-	text-align: center;
-}
+
 
 
 
@@ -519,17 +523,20 @@ footer{
 </head>
 <body>
 
-  @yield('content')
+  
   <main>
-    
+    {{-- <div class="title">
       <div class="title_img">
         <img src="{{ asset('storage/images/78dffbe21976ee32400ca9b6883fbfeacfa534f1.jpg') }}" alt="まごころはーぶ">
       </div>
       <div class="title_text">
-        <span>magokoro herb 279</span>
+        <h2>magokoro herb 279</h2>
       </div>
-    
+    </div> --}}
+
+      @yield('content')
+
   </main>
   
 </body>
-</html>
+</x-app-layout>

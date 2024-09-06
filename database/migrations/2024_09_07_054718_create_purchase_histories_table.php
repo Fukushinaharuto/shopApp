@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users_stocks', function (Blueprint $table) {
+        Schema::create('purchase_histories', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('stock_id');
-            $table->integer('bought_flag')->default(0)->comment('-1=キャンセル、0=カゴの中にある、1=購入済み');
-            $table->integer('quantity');
+            $table->unsignedBigInteger('user_id');
+            $table->json('items'); // 商品の情報をJSON形式で保存
+            $table->integer('total_price'); // 合計金額
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users_stocks');
+        Schema::dropIfExists('purchase_histories');
     }
 };

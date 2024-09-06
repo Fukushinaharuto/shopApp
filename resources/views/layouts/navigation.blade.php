@@ -18,6 +18,13 @@
                     <x-nav-link :href="route('stock.myCart')" :active="request()->routeIs('stock.myCart')">
                         カート
                     </x-nav-link>
+                    <x-nav-link :href="route('favorites.index')" :active="request()->routeIs('favorites.index')">
+                        お気に入り
+                    </x-nav-link>
+                    <x-nav-link :href="route('purchase.history')" :active="request()->routeIs('purchase.history')">
+                        購入履歴
+                    </x-nav-link>
+                    
                 </div>
             </div>
 
@@ -89,7 +96,12 @@
             <x-responsive-nav-link :href="route('stock.myCart')" :active="request()->routeIs('stock.myCart')">
                 カート
             </x-responsive-nav-link>
-
+            <x-responsive-nav-link :href="route('favorites.index')" :active="request()->routeIs('favorites.index')">
+                お気に入り
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('purchase.history')" :active="request()->routeIs('purchase.history')">
+                購入履歴
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
