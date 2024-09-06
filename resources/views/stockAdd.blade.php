@@ -1,27 +1,38 @@
+@extends('layouts.layout')
+@section('content')
 
-<x-app-layout>
-<form action="{{ route('stockAdd') }}" method="POST">
+<style>
+.adds{
+
+}
+.add{
+    display:flex;
+
+}
+</style>
+
+<form action="{{ route('stockAdd') }}" method="POST" enctype="multipart/form-data">
     @csrf
-    <table>
-        <tr>
-            <th><label for="name">商品名：</label></th>
-            <td><input type="text" id="name" name="name" required></td>
-        </tr>
-        <tr>
-            <th><label for="explain">商品説明：</label></th>
-            <td><input type="text" id="explain" name="explain" required></td>
-        </tr>
-        <tr>
-            <th><label for="price">商品価格：</label></th>
-            <td><input type="number" id="price" name="price" required></td>
-        </tr>
-        <tr>
-            <th><label for="imagePath">商品画像：</label></th>
-            <td><input type="file" name="imagePath"></td>
-        </tr>
-        <tr>
-            <button type="submit">追加</button>
-        </tr>
-    </table>
+    <div class="adds">
+        <div class="add">
+            <p><label for="name">商品名：</label></p>
+            <p><input type="text" id="name" name="name" required></p>
+        </div>
+        <div class="add">
+            <p><label for="explain">商品説明：</label></p>
+            <p><input type="text" id="explain" name="explain" required></p>
+        </div>
+        <div class="add">
+            <p><label for="price">商品価格：</label></p>
+            <p><input type="number" id="price" name="price" required></p>
+        </div>
+        <div class="add">
+            <p><label for="imagePath">商品画像：</label></p>
+            <p><input type="file" name="imagePath"></p>
+        </div>
+        <div>
+            <button type="submit" class="button">追加</button>
+        </div>
+    </div>
 </form>
-</x-app-layout>
+@endsection

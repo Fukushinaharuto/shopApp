@@ -11,13 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users_stocks', function (Blueprint $table) {
+        Schema::create('favorites', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('stock_id');
-            $table->integer('bought_flag')->default(0)->comment('-1=キャンセル、0=カゴの中にある、1=購入済み');
-            $table->integer('quantity');
+
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('stock_id');
             $table->timestamps();
+            
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('stock_id')->references('id')->on('stocks')->onDelete('cascade');
+
+            
         });
     }
 
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users_stocks');
+        Schema::dropIfExists('favorites');
     }
 };

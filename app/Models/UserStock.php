@@ -11,6 +11,11 @@ class UserStock extends Model
     protected $table ='users_stocks';
 
     protected $fillable = [
-        'merch_id', 'user_id',
+        'stock_id', 'user_id',
     ];
+
+    public function stock()
+    {
+        return $this->belongsTo(Stock::class, 'stock_id');
+    }
 }
