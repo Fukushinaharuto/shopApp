@@ -6,41 +6,56 @@
 </head>
 <style>
 img {
-    width: 260px;
-    height: 180px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+
+}
+.favorite_img {
+    border-radius: 50%;
 }
 .wrapper {
     display: flex;
-    justify-content: center; /* 全体を中央に配置 */
+    flex-wrap: wrap;
+    gap: 2%; /* スペースを追加 */
+    justify-content: space-between;
+    margin: 20px auto;
+    max-width: 1200px;
 }
 
 /* 商品コンテナ */
 .stock-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 300px 幅のアイテムを自動配置 */
-    gap: 20px; /* アイテム間のスペース */
-    justify-content: center; /* コンテナ全体を中央に配置 */
-    max-width: 1200px; /* 必要に応じて幅を調整 */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 3%;
+    justify-content: center;
+    max-width: 90%;
     margin: 0 auto;
+    grid-auto-rows: 1fr;
 }
 
 /* 各商品アイテム */
 .stock-item {
-    max-width: 300px; /* 最大幅を指定 */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 100%;
     box-sizing: border-box;
-    border: 1px solid #ddd;
-    padding: 20px;
+    border: 2px solid black;
+    padding: 5%;
     text-align: center;
+    height: 100%;
+    background-color: white;
+    overflow: hidden; /* 商品アイテム内で要素が溢れないようにする */
 }
 .beside {
     display: flex;
-    justify-content: space-between; /* アイテムを両端に配置 */
-    align-items: center; /* 垂直方向に中央揃え */
+    justify-content: space-between;
+    align-items: center;
 }
 
 .beside h3 {
-    font-size: 25px;
+    font-size: 200%;
 }
 
 .button {
@@ -48,37 +63,44 @@ img {
 }
 
 .pege {
-    margin: 20px;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.stock-area {
+    flex: 3;
+    min-width: 300px;
+    margin-left: 20px; /* 検索フォームとの余白 */
+    background-color: #ffffe0;
+    box-sizing: border-box; /* 要素のサイズをborderとpaddingを含めて計算 */
+    overflow: hidden; /* 背景を超えないようにする */
+    padding-bottom:50px;
 }
 </style>
 
-<div class="search-form">
-    <form action="{{ route('stock.search') }}" method="GET">
-        <input type="text" name="query" placeholder="商品名で検索" value="{{ request()->input('query') }}">
-        <button type="submit">検索</button>
-    </form>
-</div>
 
 <div class="wrapper">
-    <div class="stock-container">
-    @foreach($stocks as $stock)
-        <a href="{{ route('stock.detail', ['id' => $stock->id]) }}">
-            <div class="stock-item">
-                <div class="beside">
-                    <h3>{{$stock->name}}</h3>
-                    <p class="price">{{$stock->price}}円</p>
-                    <form action="{{ route('favorite.remove', ['stock_id' => $stock->id]) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" style="background: none; border: none; cursor: pointer;">
-                            <i class="fa fa-heart" style="color: #ff0000; font-size: 24px;"></i> <!-- 赤いハート -->
-                        </button>
-                    </form>
+    <div class="stock-area">
+        <div class="stock-container">
+        @foreach($stocks as $stock)
+            <a href="{{ route('stock.detail', ['id' => $stock->id]) }}">
+                <div class="stock-item">
+                    <div class="beside">
+                        <h3>{{$stock->name}}</h3>
+                        <p class="price">{{$stock->price}}円</p>
+                        <form action="{{ route('favorite.remove', ['stock_id' => $stock->id]) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" style="background: none; border: none; cursor: pointer;">
+                                <i class="fa fa-heart" style="color: #ff0000; font-size: 24px;"></i> <!-- 赤いハート -->
+                            </button>
+                        </form>
+                    </div>
+                    <img src="{{ asset('storage/images/' . $stock->imagePath) }}" alt="画像" class="favorite_img">
                 </div>
-                <img src="{{ asset('storage/images/' . $stock->imagePath) }}" alt="画像">
-            </div>
-        </a>
-    @endforeach
+            </a>
+        @endforeach
+        </div>
     </div>
 </div>
 <div class="pege">{{ $stocks->links() }}</div>

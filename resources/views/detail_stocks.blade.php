@@ -67,6 +67,11 @@
         </div>
         <img src="{{asset('storage/images/' . $stock->imagePath)}}" alt="画像">  
         <p>{{ $stock->explain }}</p>
+            <ul>
+            @foreach($stock->tags as $tag)
+                <li>★{{ $tag->name }}</li>
+            @endforeach
+            </ul>
         <form action="{{ url('addMyCart') }}" method="post" class="cart-form">
             @csrf
             <input type="hidden" name="stock_id" value="{{ $stock->id }}">

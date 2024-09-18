@@ -8,10 +8,10 @@
 }
 
 .cart-item {
-
+    background-color:white;
     max-width: 780px; /* 最大幅を指定 */
     box-sizing: border-box;
-    border: 1px solid #ddd;
+    border: 2px solid black;
     padding: 20px 60px;
     text-align: center;
     display:flex;
@@ -25,13 +25,23 @@ img{
     height: 180px;
     object-fit: cover;
 }
+.cart-area{
+
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width:1200px;
+    background-color: #ffffe0;
+    box-sizing: border-box; /* 要素のサイズをborderとpaddingを含めて計算 */
+    overflow: hidden; /* 背景を超えないようにする */
+    padding-bottom:50px;
+}
 </style>
 
 
 @if ($myCartStocks->isEmpty())
     <p>カートは空です。</p>
 @else
-    <div>
+    <div class="cart-area">
         @foreach ($myCartStocks as $cartItem)
             @if ($cartItem->stock)
                 <div class="cart-item">

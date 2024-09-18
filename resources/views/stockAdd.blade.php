@@ -30,9 +30,19 @@
             <p><label for="imagePath">商品画像：</label></p>
             <p><input type="file" name="imagePath"></p>
         </div>
-        <div>
+        <div class="add">
+            <p><label>タグ：</label></p>
+            <p>
+                @foreach($tags as $tag)
+                    <div>
+                        <input type="checkbox" id="tag{{ $tag->id }}" name="tags[]" value="{{ $tag->id }}">
+                        <label for="tag{{ $tag->id }}">{{ $tag->name }}</label>
+                    </div>
+                @endforeach
+            </p>
+        </div>
+                <div>
             <button type="submit" class="button">追加</button>
         </div>
-    </div>
 </form>
 @endsection

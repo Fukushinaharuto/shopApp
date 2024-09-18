@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-100" style=" position: fixed;,top: 90%;,left: 100px;min-width: 100%;z-index: 999;">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -24,6 +24,11 @@
                     <x-nav-link :href="route('purchase.history')" :active="request()->routeIs('purchase.history')">
                         購入履歴
                     </x-nav-link>
+                    @if(Auth::check() && Auth::user()->role_flag === 0)
+                        <x-nav-link :href="route('stock.create')" :active="request()->routeIs('stock.create')">
+                            商品の追加
+                        </x-nav-link>
+                    @endif
                     
                 </div>
             </div>
@@ -102,6 +107,11 @@
             <x-responsive-nav-link :href="route('purchase.history')" :active="request()->routeIs('purchase.history')">
                 購入履歴
             </x-responsive-nav-link>
+            @if(Auth::check() && Auth::user()->role_flag === 0)
+                <x-responsive-nav-link :href="route('stock.create')" :active="request()->routeIs('stock.create')">
+                    商品の追加
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

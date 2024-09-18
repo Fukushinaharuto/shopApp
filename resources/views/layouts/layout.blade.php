@@ -1,5 +1,33 @@
 <x-app-layout>
+<header>
+  {{-- <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> --}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap" rel="stylesheet">
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</header>
 <style>
+*{
+  .gfs-didot-regular {
+  font-family: "GFS Didot", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+}
+.gfs-didot-regular {
+  font-family: "GFS Didot", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+}
+
+
 *,
 ::before,
 ::after {
@@ -426,6 +454,7 @@ body{
 	font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic medium", "Meiryo", sans-serif;
 	color: #111;
 	line-height: 1.8;
+  background-color:#e0ffff;
 }
 img{
 	max-width: 100%;
@@ -445,7 +474,7 @@ a:hover{
 -------------*/
 
 .wrapper{
-	width: 1024px;
+	width: 100%;
 	margin: 0 auto;
 }
 
@@ -465,19 +494,16 @@ a:hover{
 /*main
 ---------------------*/
 main {
+  padding-top:32px;
   text-align: center;
-  max-width: 960px;
+  max-width: 80%;
   margin: 0 auto;
+  background-color:white;
 }
 
-
-.title_imag{
-    text-align: center;
+.title {
   display: flex;
-  justify-content: center; /* コンテンツ全体を中央に配置 */
-  align-items: center;
-
-  text-align: center;
+  justify-content: center;
 }
 
 .title_img img {
@@ -486,15 +512,6 @@ main {
 }
 
 
-
-
-.title_text h2 {
-  display: inline-block; /* 回転を適用するために必要 */
-  transform: rotate(90deg); /* 90度回転 */
-  white-space: nowrap; /* 文字の折り返しを防止 */
-  font-size: 50px;
-  margin-left: -170px /* 画像との間にスペースを追加 */
-}
 
 .title {
   display: flex;
@@ -525,14 +542,7 @@ main {
 
   
   <main>
-    {{-- <div class="title">
-      <div class="title_img">
-        <img src="{{ asset('storage/images/78dffbe21976ee32400ca9b6883fbfeacfa534f1.jpg') }}" alt="まごころはーぶ">
-      </div>
-      <div class="title_text">
-        <h2>magokoro herb 279</h2>
-      </div>
-    </div> --}}
+
 
       @yield('content')
 

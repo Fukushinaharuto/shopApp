@@ -2,12 +2,14 @@
 
 @section('content')
 <style>
+
 .purchase-item {
     max-width: 780px; /* 最大幅を指定 */
     box-sizing: border-box;
-    border: 1px solid #ddd;
+    border: 2px solid black;
     padding: 20px 60px;
     margin: 0 auto;
+    background-color:white;
 }
 
 .purchase-item p {
@@ -16,6 +18,9 @@
 
 .purchase-details {
     margin-top: 20px;
+    display: flex; /* 子要素をフレックスコンテナとして扱う */
+    flex-direction: column; /* 子要素を縦に並べる */
+    align-items: center; /* 子要素を中央に配置 */
 }
 
 .purchase-details h3 {
@@ -24,7 +29,9 @@
 }
 
 .purchase-details .item {
-    display: flex;
+
+        display: flex;
+    align-items: center; /* アイテムを中央に配置 */
     margin-bottom: 10px;
 }
 

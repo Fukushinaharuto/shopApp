@@ -13,5 +13,12 @@ class Stock extends Model
         'id'
     ];
 
+    protected $table = 'stocks';
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'stocks_tag', 'stock_id', 'tag_id');
+    }
+
     // public function 
 }

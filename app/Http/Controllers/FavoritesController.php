@@ -17,7 +17,7 @@ class FavoritesController extends Controller
         // ユーザーのお気に入り商品を取得
         $favorites = Favorite::where('user_id', $user_id)->pluck('stock_id')->toArray();
         // お気に入りの商品を取得
-        $stocks = Stock::whereIn('id', $favorites)->paginate(6);
+        $stocks = Stock::whereIn('id', $favorites)->paginate(9);
 
         return view('stocks_favorite', ['stocks' => $stocks]);
     }
