@@ -117,7 +117,7 @@ img{
 
 </style>
 
-
+<h1 class="Product-list">Purchase confirmed</h1>
 @if ($myCartStocks->isEmpty())
 <h1 class="Product-list">Purchase confirmation</h1>
     <div class="no-stock-area">
@@ -126,7 +126,7 @@ img{
     
 @else
     <div>
-        <h1 class="Product-list"></h1>
+        
 
         <div class="cart-area">
             <table class="table-area">
