@@ -20,7 +20,6 @@ class PurchaseController extends Controller
     public function purchaseCart()
     {
         $user_id = Auth::id();
-<<<<<<< HEAD
         $user = Auth::user();
         if (!$user) {
             return redirect()->route('register'); // 新規登録画面へリダイレクト
@@ -31,8 +30,6 @@ class PurchaseController extends Controller
             return redirect()->route('profile.edit'); // アカウント編集画面へリダイレクト
         }
         
-=======
->>>>>>> 061e050458fb3a4df5407c3f3dbe861ab79874f9
         $myCartStocks = UserStock::with('stock')->where('user_id', $user_id)->get();
     
         if ($myCartStocks->isEmpty()) {
