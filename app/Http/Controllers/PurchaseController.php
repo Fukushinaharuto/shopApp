@@ -20,6 +20,16 @@ class PurchaseController extends Controller
     public function purchaseCart()
     {
         $user_id = Auth::id();
+        $user = Auth::user();
+        if (!$user) {
+            return redirect()->route('register'); // 新規登録画面へリダイレクト
+        }
+    
+        // ユーザーの住所が未入力の場合
+        if (empty($user->name) ||empty($user->email) || empty($user->postal_code) || empty($user->phone) || empty($user->prefecture) || empty($user->city) || empty($user->address_line)) { // 住所のカラム名は実際のカラム名に置き換えてください
+            return redirect()->route('profile.edit'); // アカウント編集画面へリダイレクト
+        }
+        
         $myCartStocks = UserStock::with('stock')->where('user_id', $user_id)->get();
     
         if ($myCartStocks->isEmpty()) {

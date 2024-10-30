@@ -3,118 +3,73 @@
 
 <style>
 /* 検索フォーム全体のスタイル */
-.search-form {
-    max-width: 1000px;
-    margin: 20px auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-radius: 12px;
-    background-color: #f8f8f8;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    flex-wrap: wrap; /* レスポンシブ対応で折り返す */
-}
 
-/* 検索ボックスのスタイル */
-.search-form input[type="text"] {
-    flex: 2;
-    padding: 12px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    margin-right: 15px;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
-}
-
-/* タグのチェックボックスのスタイル */
-.tag-checkboxes {
-    flex: 2;
-    margin-left: 15px;
-    margin-top: 10px; /* スペースを追加 */
-}
-
-.tag-checkboxes div {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.tag-checkboxes input[type="checkbox"] {
-    margin-right: 10px;
-    accent-color: #3498db;
-}
-
-/* タグラベルのスタイル */
-#tagLabel {
-    cursor: pointer;
-    color: #3498db;
-    font-size: 18px;
-    font-weight: bold;
-    margin-right: 10px;
-    white-space: nowrap;
-}
-
-#tagLabel:hover {
-    color: #2e86c1;
-}
-
-/* ページングのスタイル */
-.pege {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.pege .pagination {
-    display: flex;
-    list-style: none;
-}
-
-.pege .pagination li {
-    margin: 0 5px;
-}
-
-.pege .pagination li a {
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    color: #3498db;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-.pege .pagination li a:hover {
-    background-color: #3498db;
-    color: white;
-}
 
 /* 商品コンテナ */
 .stock-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
-    gap: 8%;
-    justify-content: center;
-    max-width: 100%;
-    margin: 0 auto;
-    grid-auto-rows: 1fr;
-    
+    display: flex;
+    gap: 16px;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%; /* 全体の幅を100%に設定 */
+    max-width: 1200px; /* 最大幅を設定 */
+    overflow-x: auto; /* 横スクロールを有効化 */
+
+    margin: 0 auto; /* 中央揃え */
+
 }
 
+
+
 /* 各商品アイテム */
-.stock-item {
+
+
+.item-top{
+    word-wrap:break-all;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    max-width: 100%;
-    box-sizing: border-box;
-    border: 1px solid #dcdcdc;
-    padding: 5%;
-    text-align: center;
-    height: 100%; /* 高さを100%に固定 */
-    background-color: #fff9f4;
-    overflow: hidden; /* 商品アイテム内で要素が溢れないようにする */
+    position: relative; /* 子要素のposition基準 */
+    padding: 30px;
+    height: 270px; /* 高さを固定 */
+    width: 330px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+
 }
+
+.item-bottom {
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    margin-top: auto; /* 上の余白を自動調整して下にくっつける */
+    text-align: center; /* 中央揃え */
+
+    background-color: white; /* 背景色を設定 */
+    
+    position: relative; /* 基準位置を設定 */
+    padding: 30px 20px 50px; /* 下部の余白を増やして内容が重ならないように */
+    white-space: nowrap;
+    height: 180px; /* 高さを固定 */
+    width: 330px;
+}
+
+    .slide-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(255, 255, 255, 0.8);
+        border: none;
+        font-size: 30px;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    .prev-btn {
+        left: 10px;
+    }
+
+    .next-btn {
+        right: 10px;
+    }
 
 /* 画像のスタイル */
 img {
@@ -125,13 +80,22 @@ img {
 }
 
 .store_img{
+    width: 270px; /* 画像の幅を小さく設定 */
+    height: 175px; /* アスペクト比を保つ */
+    object-fit: cover;
     border-radius: 50%;
+
+    position: absolute;
+
+    bottom: 20px; /* 親要素の下端に配置 */
+    
 }
 
 .beside {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    text-align:right;
+    position: absolute;
+    right: 20px; /* 親要素の内側に配置 */
+    bottom: 20px; /* 親要素の下端に配置 */
 }
 
 .beside h3 {
@@ -139,58 +103,23 @@ img {
 }
 
 /* 検索ボタンのスタイル */
-.search-form button:hover,
-.search-form a:hover {
-    background-color: #3498db;
-}
 
-.search-form a {
-    margin-top: 10px;
-    color: #3498db;
-    text-decoration: none;
-}
 
 
 
 /* 全体のコンテナ */
-.wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2%; /* スペースを追加 */
-    justify-content: space-between;
-    margin: 0 auto;
-    max-width: 1200px;
-}
+
 
 /* 検索フォームエリア */
-.search-area {
-    flex: 1;
-    min-width: 300px; /* 小さい画面での最小幅を設定 */
-    margin-right: 20px; /* 右側に余白を追加 */
-}
+
 
 /* 固定されるときの検索フォームスタイル */
-.search-input{
-    display: flex;
-    justify-content: center;
-}
+
 
 /* 商品エリア */
-.stock-area {
-    flex: 3;
-    min-width: 300px;
 
-    background-color: white;
-    box-sizing: border-box; /* 要素のサイズをborderとpaddingを含めて計算 */
-    overflow: hidden; /* 背景を超えないようにする */
-    padding-bottom:50px;
-}
-.search-area {
-        position: fixed;
-        top: 100px;
-        left: 30px;
-        width: 10%;
-    }
+
+
 
 .heading{
     padding:10px 0 10px 5%;
@@ -201,114 +130,274 @@ img {
     
 
 }
+.color-1 {
+    background-color: #f8d7da;
+}
+
+.color-2 {
+    background-color: #d4edda;
+}
+
+.color-3 {
+    background-color: #d1ecf1;
+}
 
 .delete_buttom{
-    padding-top:40px;
+    margin-top:15%;
+}
+
+
+.price{
+    
+    
+    
+    font-size: 16px; /* 必要に応じてサイズを調整 */
+    color: #333; /* テキストの色を設定 */
+    transform: translate(-50%, -50%); /* 中央に配置 */
+    position: absolute; /* 絶対位置指定 */
+    right: 10%; /* 親要素の右端に配置 */
+    bottom: 20%; /* 親要素の下端に配置 */
+    font-size:18px;
+}
+.title{
+    max-width:100%;
+
 }
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
     .wrapper {
         flex-direction: column;
     }
+    .search-input {
+        width: 100%; /* 小さい画面の場合は100%幅にする */
+    }
+}
+.tag-name{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 中央に配置 */
+}
+
+.title_img{
+    max-width: 80%
+}
+
+.stocks-area{
+    background-color: #ffff77;
+    margin-top: 10px;
+    padding: 30px 0;
+    
+    
+}   
+
+
+
+
+    /* タイトルのアニメーション */
+    .Product-list {
+    display: inline-block;
+    font-size: 80px;
+    padding-top:30px;
+    animation: marquee 8s linear infinite alternate;
+    color:#cccccc;
+    }
+
+    /* アニメーションの詳細 */
+    @keyframes marquee {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+    }
+.stock-name{
+    font-size: 20px;
+    word-wrap:break-all;
+    /* overflow:auto; */
+   
+}
+
+.search-area {
+    max-width: 1200px;
+    background-color: white; /* 背景色を設定 */
+    padding: 30px; /* 内側の余白を設定 */
+    border-radius: 30px;
+    justify-content: center;
+    margin: 30px auto; /* 上下に30px、左右に自動マージン */
+
+    
+}
+.tag-checkboxes {
+    display: flex; /* フレックスボックスを有効にする */
+    flex-wrap: wrap; /* 要素が折り返すようにする */
+    gap: 16px; /* 子要素間の隙間 */
+}
+
+.tag-checkboxes div {
+    flex: 1 0 150px; /* 最小幅150pxのフレックスアイテム */
+    display:flex;
+    align-items: center;
+    height:40px;
+}
+.tags-area{
+    text-align:left;
+    padding-left:8px;
+}
+details {
+
+
+
+}
+summary {
+    margin-left:80%;
+    list-style: none; /* デフォルトのリストスタイルを無効化 */
+    cursor: pointer; /* ポインターを表示 */
+    
+    display: flex; /* フレックスボックスを利用 */
+    align-items: center; /* 縦方向の中央揃え */
+    justify-content: center; /* 横方向の中央揃え */
+    
+    background-color: white; /* 背景色を指定 */
+    border-radius: 50%;
+    
+    font-size: 24px; /* フォントサイズを指定 */
+    border: 2px solid #333; /* 枠線を指定 */
+    width: 60px; /* 幅を指定 */
+    height: 60px; /* 高さを指定 */
+
+}
+
+summary i {
+    margin: 0; /* アイコンの余白を削除 */
+    font-size: 24px; /* アイコンのサイズを指定 (必要に応じて調整) */
+}
+
+
+summary::-webkit-details-marker {
+    display: none; /* Chrome系ブラウザの矢印を非表示にする */
+}
+
+.search-input {
+    width: 500px; /* ここを希望のサイズに変更 */
+    margin-top:10px;
+    margin-bottom:20px;
 }
 
 </style>
+
+    
     <div class="title">
-      <div class="title_img">
-        <img src="{{ asset('storage/images/title_img.png') }}" alt="まごころはーぶ">
-      </div>
+        <div class="title_img">
+            <img src="{{ asset('storage/images/title_img.png') }}" alt="まごころはーぶ">
+        </div>
     </div>
 
-<div class="wrapper">
+
     <!-- 検索フォームエリア -->
 
-    <div class="search-area" id="search" style="display:none;">
-        <div class="search-form">
-            <details>
-                <summary id="status">
-                    検索表示
-                </summary>
-                
-                    <form action="{{ route('stock.index') }}" method="GET">
-                        <input type="text" name="query" class="search-input" placeholder="商品名で検索" value="{{ request()->input('query') }}">
-                        
-                        <div class="form-group">
-                            {{-- <label id="tagLabel">タグ一覧を表示</label> --}}
-                            <div id="tagCheckboxes" class="tag-checkboxes">
-                                @foreach($tags as $tag)
-                                    <div>
-                                        <input type="checkbox" id="filterTag{{ $tag->id }}" name="tag_id[]" value="{{ $tag->id }}" 
-                                        {{ in_array($tag->id, request('tag_id', [])) ? 'checked' : '' }}>
-                                        <label for="filterTag{{ $tag->id }}">{{ $tag->name }}</label>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
+    
+    
 
-                        <button type="submit">検索</button>
-                    </form>
-                    
-                
-            </details>
-            <a href="{{ route('stock.index') }}">リセット</a>
-        </div>
-    </div>
+        <h1 class="Product-list">Product List</h1>
     <!-- 商品一覧エリア -->
-    <div style="background-color:white; padding:40px; ">
-        <div class="stock-area">
-
-                <div class="heading">
-                    <h1>ブレンド Herb tea</h1>
-                </div>
-
+    <div class="stocks-area">
+        
+            
+                    <details>
+                        <summary id="status">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </summary>
+                        
+                            <div class="search-area">
+                                <form action="{{ route('stock.index') }}" method="GET" >
+                                    
+                                        <input type="text" name="query" class="search-input" placeholder="商品名で検索" value="{{ request()->input('query') }}">
+                                        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                    
+                                    <a href="{{ route('stock.index') }}" style="color:blue;">リセット</a>
+                                    <div class="form-group">
+                                        {{-- <label id="tagLabel">タグ一覧を表示</label> --}}
+                                        <div id="tagCheckboxes" class="tag-checkboxes">
+                                            @foreach($tags as $tag)
+                                                <div>
+                                                    <input type="checkbox" id="filterTag{{ $tag->id }}" name="tag_id[]" value="{{ $tag->id }}" 
+                                                    {{ in_array($tag->id, request('tag_id', [])) ? 'checked' : '' }}>
+                                                    <div class="tags-area">
+                                                        <label for="filterTag{{ $tag->id }}">{{ $tag->name }}</label>
+                                                    </div>
+                                                    
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+            
+                                    
+                                </form>
+                            </div>
                 
-            @if($user->role_flag === 0)
-                <form action="{{ route('stock.delete')}}" method="POST">
-                    @csrf
-                    @method('DELETE')
-            @endif
+                        
+                    </details>
+                    
+               
+            
+            
             <div class="stock-container">
+
                 @foreach($stocks as $stock)
-                    <a href="{{ route('stock.detail', ['id' => $stock->id]) }}">
-                        <div class="stock-item">
-                            <div class="beside">
-                                @if($user->role_flag === 0)
-                                        <input type="checkbox" name="stock_ids[]" value="{{ $stock->id }}">
-                                @endif
-                                <h3 style="font-size:100%;">{{$stock->name}}</h3>
+                    <a href="{{ route('stock.detail', ['id' => $stock->id]) }}" style="border-radius: 30px;">
+                        
+                            <div class="item-top {{ 'color-' . ($loop->index % 3 + 1) }}">
                                 
-                                @if (in_array($stock->id, $favorites))
-                                    <form action="{{ route('favorite.remove', ['stock_id' => $stock->id]) }}" method="POST" style="display:inline;">
+                                    <h3 class="stock-name">{{$stock->name}}</h3>
+                               
+                            
+                                <img src="{{ asset('storage/images/' . $stock->imagePath) }}" alt="画像" class="store_img">
+                                <div class="beside">
+                                    
+                                    <button class="favorite-toggle" data-stock-id="{{ $stock->id }}" style="background: none; border: none; cursor: pointer;">
+                                        @if (in_array($stock->id, $favorites))
+                                            <i class="fa fa-heart" style="color: #ff0000; font-size: 24px;"></i> <!-- 既にお気に入り登録済み -->
+                                        @else
+                                            <i class="fa fa-heart" style="color: #ccc; font-size: 24px;"></i> <!-- お気に入り未登録の空ハート -->
+                                        @endif
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="item-bottom">
+                                
+                                <ul class="tag-name">
+                                    @foreach($stock->tags as $tag)
+                                        <li>★{{ $tag->name }}</li>
+                                    @endforeach
+                                </ul>
+                                
+                           
+                                <p class="price">¥{{$stock->price}}</p>
+                            </div>
+                        </a>
+                            <!-- 削除ボタンを追加 -->
+                            @if (!is_null($user))
+                                @if($user->role_flag === 0)
+                                    <form action="{{ route('stock.delete', ['id' => $stock->id]) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" style="background: none; border: none; cursor: pointer;">
-                                            <i class="fa fa-heart" style="color: #ff0000; font-size: 24px;"></i>
-                                        </button>
-                                    </form>
-                                @else
-                                    <form action="{{ route('favorite.add', ['stock_id' => $stock->id]) }}" method="POST" style="display:inline;">
-                                        @csrf
-                                        <button type="submit" style="background: none; border: none; cursor: pointer;">
-                                            <i class="fa fa-heart" style="color: #ccc; font-size: 24px;"></i>
-                                        </button>
+                                        <button type="submit" class="delete_buttom">削除</button>
                                     </form>
                                 @endif
-                            </div>
-                            <img src="{{asset('storage/images/' . $stock->imagePath)}}" alt="画像" class="store_img">
-                            <p class="price">{{$stock->price}}円</p>
-                        </div>
-                    </a>
+                            @endif
+
+                        
+                    
                 @endforeach
             </div>
-            @if($user->role_flag === 0)
-                    <button type="submit" class="delete_buttom">選択した商品を削除</button>
-                </form>
-            @endif
-        </div>
+            
+
     </div>
 </div>
 
-<div class="pege">{{$stocks->links()}}</div>
+{{-- <div class="pege">{{$stocks->links()}}</div> --}}
 
 {{-- <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -324,27 +413,97 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script> --}}
-<script>
-    const details = $('details');
-    const statusP = $('#status');
 
-    $(window).on('scroll', function() {
-        // スクロール量が100pxを超えたら検索フォームを表示し、それ未満なら非表示にする
-        if ($(window).scrollTop() > 500) {
-            $("#search").show();  // display: none; を削除して表示
+<script>
+
+
+
+
+$(document).ready(function () {
+    const $container = $('.stock-container');
+    const $items = $container.children();
+    const itemCount = $items.length;
+
+    const totalScrollWidth = itemWidth * itemCount; // 全体のスクロール幅
+
+    // アイテムを複製
+
+
+    // スクロール量
+    const scrollAmount = itemWidth; // 最初のアイテムの幅を取得
+
+    // マウスホイールイベントで横スクロールを実現
+    $container.on('wheel', function (event) {
+        event.preventDefault(); // デフォルトの縦スクロールを防ぐ
+
+        // スクロール方向に応じてスクロール位置を調整
+        const delta = event.originalEvent.deltaY; 
+        if (delta > 0) {
+            // 右にスクロール
+            $(this).scrollLeft($(this).scrollLeft() + scrollAmount);
         } else {
-            $("#search").hide();  // display: none; を適用して非表示
+            // 左にスクロール
+            $(this).scrollLeft($(this).scrollLeft() - scrollAmount);
         }
     });
 
-    // detailsタグの状態を切り替えた際の表示を更新
-    $('details').on('toggle', function() {
-        const isOpen = $(this).prop('open');
-        $('#status').text(isOpen ? '検索非表示' : '検索表示');
+    // stock-item 内でのホイールイベントを無効化
+    $items.on('wheel', function (event) {
+        event.stopPropagation(); // イベントのバブリングを停止
     });
 
 
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.favorite-toggle').forEach(function(button) {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const stockId = this.dataset.stockId;
+            const url = `/favorite/toggle/${stockId}`;
+            
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ stock_id: stockId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const icon = this.querySelector('i');
+                if (data.status === 'added') {
+                    
+                    icon.classList.add('fa-heart');
+                    icon.style.color = '#ff0000';
+                } else if (data.status === 'removed') {
+                    
+                    icon.classList.add('fa-heart-o');
+                    icon.style.color = '#ccc';
+                } else if (data.status === 'not_logged_in') {
+                    window.location.href = 'login'; // ログインページにリダイレクト
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+});
+
+
+
+
+
+
 </script>
+
+
+
+
+
+
+
 
 
 @endsection

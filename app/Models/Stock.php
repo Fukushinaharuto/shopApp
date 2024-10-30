@@ -20,5 +20,13 @@ class Stock extends Model
         return $this->belongsToMany(Tag::class, 'stocks_tag', 'stock_id', 'tag_id');
     }
 
+    public function descriptions()
+    {
+        return $this->hasMany(ProductDescription::class);
+    }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
     // public function 
 }

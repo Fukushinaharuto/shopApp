@@ -17,7 +17,7 @@ class FavoritesController extends Controller
         // ユーザーのお気に入り商品を取得
         $favorites = Favorite::where('user_id', $user_id)->pluck('stock_id')->toArray();
         // お気に入りの商品を取得
-        $stocks = Stock::whereIn('id', $favorites)->paginate(9);
+        $stocks = Stock::whereIn('id', $favorites)->get();
 
         return view('stocks_favorite', ['stocks' => $stocks]);
     }
@@ -44,6 +44,28 @@ class FavoritesController extends Controller
         $favorite->delete();
         
         return redirect()->back()->with('message', "商品をお気に入りから削除しました");
+    }
+    
+    public function toggleFavorite(Request $request, $stock_id)
+    {
+        $user_id = Auth::id();
+        if (!$user_id) {
+            return response()->json(['status' => 'not_logged_in']);
+        }
+    
+        
+        $favorite = Favorite::where('user_id', $user_id)->where('stock_id', $stock_id)->first();
+    
+        if ($favorite) {
+            $favorite->delete();
+            return response()->json(['status' => 'removed']);
+        } else {
+            Favorite::create([
+                'user_id' => $user_id,
+                'stock_id' => $stock_id,
+            ]);
+            return response()->json(['status' => 'added']);
+        }
     }
     
     

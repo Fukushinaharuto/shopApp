@@ -1,3 +1,6 @@
+<header>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</header>
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100" style=" position: fixed;,top: 90%;,left: 100px;min-width: 100%;z-index: 999;">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -5,28 +8,31 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                    </a>
+
+                        <img src="{{ asset('storage/images/logo.png') }}" class="block h-9 w-auto fill-current text-gray-800">
+
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('stock.index')" :active="request()->routeIs('stock.index')">
-                        Home
-                    </x-nav-link>
-                    <x-nav-link :href="route('stock.myCart')" :active="request()->routeIs('stock.myCart')">
-                        カート
+                        <i class="fa-solid fa-house">Home</i>
                     </x-nav-link>
                     <x-nav-link :href="route('favorites.index')" :active="request()->routeIs('favorites.index')">
-                        お気に入り
+                        <i class="fa-solid fa-heart">Liked Items</i>
+                    </x-nav-link>
+                    <x-nav-link :href="route('cart.checkout')" :active="request()->routeIs('cart.checkout')">
+                        <i class="fa-solid fa-cart-shopping">cart</i>
                     </x-nav-link>
                     <x-nav-link :href="route('purchase.history')" :active="request()->routeIs('purchase.history')">
-                        購入履歴
+                        <i class="fa-solid fa-file">Order History</i>
                     </x-nav-link>
                     @if(Auth::check() && Auth::user()->role_flag === 0)
                         <x-nav-link :href="route('stock.create')" :active="request()->routeIs('stock.create')">
-                            商品の追加
+                            <i class="fa-solid fa-gear">商品の追加</i>
+                        </x-nav-link>
+                        <x-nav-link :href="route('tags.index')" :active="request()->routeIs('tags.index')">
+                            <i class="fa-solid fa-gear">タグの追加</i>
                         </x-nav-link>
                     @endif
                     
@@ -39,9 +45,9 @@
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                             @if(Auth::check())
-                                <div>{{ Auth::user()->name }}</div>
+                                <div>{{ Auth::user()->name }}<i class="fa-solid fa-user"></i></div>
                             @else
-                                <div>ゲスト</div>
+                                <div>Guest<i class="fa-solid fa-user"></i></div>
                             @endif
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -54,7 +60,7 @@
                     <x-slot name="content">
                         @if(Auth::check())
                             <x-dropdown-link :href="route('profile.edit')">
-                                {{ __('Profile') }}
+                                {{ __('Account') }}<i class="fa-solid fa-user"></i>
                             </x-dropdown-link>
                     
 
@@ -65,15 +71,15 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('ログアウト') }}
+                                {{ __('Sign out') }} <i class="fa-solid fa-right-from-bracket"></i>
                             </x-dropdown-link>
                         </form>
                         @else
                             <x-dropdown-link :href="route('login')">
-                                {{ __('ログイン') }}
+                                {{ __('Sign in') }} <i class="fa-solid fa-right-to-bracket"></i>
                             </x-dropdown-link>
                             <x-dropdown-link :href="route('register')">
-                                {{ __('新規登録') }}
+                                {{ __('Sign up') }}
                             </x-dropdown-link>
                         @endif
                     </x-slot>
@@ -96,20 +102,23 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('stock.index')" :active="request()->routeIs('stock.index')">
-                Home
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('stock.myCart')" :active="request()->routeIs('stock.myCart')">
-                カート
+                <i class="fa-solid fa-house">Home</i>
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('favorites.index')" :active="request()->routeIs('favorites.index')">
-                お気に入り
+                <i class="fa-solid fa-heart">Liked Items</i>
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('cart.checkout')" :active="request()->routeIs('cart.checkout')">
+                <i class="fa-solid fa-cart-shopping">cart</i>
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('purchase.history')" :active="request()->routeIs('purchase.history')">
-                購入履歴
+                <i class="fa-solid fa-file">Order History</i>
             </x-responsive-nav-link>
             @if(Auth::check() && Auth::user()->role_flag === 0)
                 <x-responsive-nav-link :href="route('stock.create')" :active="request()->routeIs('stock.create')">
-                    商品の追加
+                    <i class="fa-solid fa-gear">商品の追加</i>
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('tags.index')" :active="request()->routeIs('tags.index')">
+                    <i class="fa-solid fa-gear">タグの追加</i>
                 </x-responsive-nav-link>
             @endif
         </div>
@@ -124,7 +133,7 @@
 
                 <div class="mt-3 space-y-1">
                     <x-responsive-nav-link :href="route('profile.edit')">
-                        {{ __('Profile') }}
+                        {{ __('Account') }}<i class="fa-solid fa-user"></i>
                     </x-responsive-nav-link>
 
                     <!-- Authentication -->
@@ -134,17 +143,17 @@
                         <x-responsive-nav-link :href="route('logout')"
                                 onclick="event.preventDefault();
                                             this.closest('form').submit();">
-                            {{ __('ログアウト') }}
+                            {{ __('Sign out') }} <i class="fa-solid fa-right-from-bracket"></i>
                         </x-responsive-nav-link>
                     </form>
                 </div>
             @else
                 <div class="px-4">
                 <x-responsive-nav-link :href="route('login')">
-                    {{ __('ログイン') }}
+                    {{ __('Sign in') }} <i class="fa-solid fa-right-to-bracket"></i>
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('register')">
-                    {{ __('新規登録') }}
+                    {{ __('Sign up') }}
                 </x-responsive-nav-link>
                 </div>
             @endif

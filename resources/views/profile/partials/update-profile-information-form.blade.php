@@ -47,7 +47,49 @@
             @endif
         </div>
 
-        <div class="flex items-center gap-4">
+        <!-- Phone -->
+        <div class="mt-4">
+            <x-input-label for="phone" :value="__('電話番号')" />
+            <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full" :value="old('phone', $user->phone)" required />
+            <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+        </div>
+
+        <!-- Postal Code -->
+        <div class="mt-4">
+            <x-input-label for="postal_code" :value="__('郵便番号')" />
+            <x-text-input id="postal_code" name="postal_code" type="text" class="mt-1 block w-full" :value="old('postal_code', $user->postal_code)" />
+            <x-input-error :messages="$errors->get('postal_code')" class="mt-2" />
+        </div>
+
+        <!-- Prefecture -->
+        <div class="mt-4">
+            <x-input-label for="prefecture" :value="__('都道府県')" />
+            <x-text-input id="prefecture" name="prefecture" type="text" class="mt-1 block w-full" :value="old('prefecture', $user->prefecture)" />
+            <x-input-error :messages="$errors->get('prefecture')" class="mt-2" />
+        </div>
+
+        <!-- City -->
+        <div class="mt-4">
+            <x-input-label for="city" :value="__('ご住所1(市区町村群)')" />
+            <x-text-input id="city" name="city" type="text" class="mt-1 block w-full" :value="old('city', $user->city)" />
+            <x-input-error :messages="$errors->get('city')" class="mt-2" />
+        </div>
+
+        <!-- Address Line -->
+        <div class="mt-4">
+            <x-input-label for="address_line" :value="__('ご住所2(町名・番地)')" />
+            <x-text-input id="address_line" name="address_line" type="text" class="mt-1 block w-full" :value="old('address_line', $user->address_line)" />
+            <x-input-error :messages="$errors->get('address_line')" class="mt-2" />
+        </div>
+
+        <!-- Building -->
+        <div class="mt-4">
+            <x-input-label for="building" :value="__('ご住所3(マンション・ビル名・部屋番号)')" />
+            <x-text-input id="building" name="building" type="text" class="mt-1 block w-full" :value="old('building', $user->building)" />
+            <x-input-error :messages="$errors->get('building')" class="mt-2" />
+        </div>
+
+        <div class="flex items-center gap-4 mt-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')

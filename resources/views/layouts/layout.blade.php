@@ -1,31 +1,29 @@
 <x-app-layout>
 <header>
-  {{-- <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> --}}
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=GFS+Didot&family=Kablammo&family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </header>
 <style>
 *{
-  .gfs-didot-regular {
-  font-family: "GFS Didot", serif;
+  font-family: "Zen Maru Gothic", serif;
   font-weight: 400;
   font-style: normal;
 }
 
-}
-.gfs-didot-regular {
-  font-family: "GFS Didot", serif;
-  font-weight: 400;
-  font-style: normal;
-}
 
-}
+
+
 
 
 *,
@@ -452,9 +450,8 @@ html{
 }
 body{
 	font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic medium", "Meiryo", sans-serif;
-	color: #111;
-	line-height: 1.8;
-  background-color:#e0ffff;
+
+
 }
 img{
 	max-width: 100%;
@@ -463,11 +460,13 @@ img{
 a{
 	text-decoration: none;
 	color: #000000;
-	transition: 0.2s;
+
+  transition: transform 0.3s ease; /* アニメーションのスピードを指定 */
 }
 a:hover{
-	opacity: 0.5;
-	transition: 0.3s;
+  cursor: pointer; /* カーソルがリンクの上にあるときのスタイル */
+  transform: translateY(-10px); /* 上に5px移動 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 影を追加 */
 }
 
 /*汎用block
@@ -496,7 +495,7 @@ a:hover{
 main {
   padding-top:32px;
   text-align: center;
-  max-width: 80%;
+  
   margin: 0 auto;
   background-color:white;
 }
@@ -528,25 +527,126 @@ main {
   padding: 8px 16px;
   font-size: 16px;
 }
+
 /*footer
 -----------------------*/
+footer{
+  margin-top: 20px;
+  text-align: left;
+  padding-top: 20px;
+}
+.footer-title{
+
+  text-align: center;
+  font-size:50px;
+  padding:10px 0;
+}
 
 
 
+.footer-title-area{
+  display:flex;
+  align-items: center;
+  border-bottom:2px solid #d4edda;
+  width: 100%; /* 最大幅を持たせて中央配置 */
+  justify-content: center; /* アイテムを中央寄せ */
+
+}
+
+.footer-img{
+  height:90px;
+  width:90px;
+  margin-right:2%;
+}
+ 
+.footer-area {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between; /* リストとアイコンを左右に配置 */
+    align-items: flex-start; /* 上部に揃える */
+    padding: 30px;
+
+
+}
+
+.footer-area ul {
+    display: block; /* 縦並びにするためにblock設定 */
+    padding: 0;
+    list-style: none; /* リストの丸を削除 */
+}
+
+.footer-area ul li {
+    padding: 10px;
+}
+
+.footer-icons {
+    display: flex;
+    gap: 15px; /* アイコン間のスペース */
+    align-items: center; /* アイコンの中央揃え */
+  
+}
+.footer-icons i {
+    font-size: 40px; /* アイコンの大きさを調整 */
+}
+.footer-backimg{
+  background-image: url('/storage/images/IMG_6029.jpg');
+
+
+  background-position: center center; 
+  background-repeat: no-repeat;  
+  background-attachment: fixed; 
+  background-size: cover;
+}
 
 
     </style>
     <title>まごころはーぶ</title>
 </head>
-<body>
+
 
   
-  <main>
 
-
+    <div style="padding-top:30px">
       @yield('content')
+    </div>
 
-  </main>
+    <footer>
+      <div class="footer-title-area">
+        <img src="{{ asset('storage/images/logo.png') }}" class="footer-img">
+        <h2 class="footer-title">magokoro herb 279</h2>
+      </div>
+      
+      <div class="footer-backimg">
+
+      
+      <div class="footer-area">
+          <ul>
+            <li><a href="{{ route("stock.index") }}"><i class="fa-solid fa-house">ホーム</i></a></li>
+            <li><a href="{{ route("favorites.index")}}"><i class="fa-solid fa-heart">お気に入り</i></a></li>
+            <li><a href="{{ route("stock.myCart")}}"><i class="fa-solid fa-cart-shopping">カート</i></a></li>
+            <li><a href="{{ route("purchase.history")}}"><i class="fa-solid fa-file">購入履歴</i></a></li>
+          </ul>
+          
+
+          <div class="footer-icons">
+            <div class="footer-icons">
+              <a href="https://line.me/" target="_blank" aria-label="LINEの公式サイトへ">
+                <i class="fa-brands fa-line"></i>
+              </a>
+              <a href="https://www.instagram.com/" target="_blank" aria-label="Instagramの公式サイトへ">
+                <i class="fa-brands fa-square-instagram"></i>
+              </a>
+              <a href="https://twitter.com/" target="_blank" aria-label="Xの公式サイトへ">
+                <i class="fa-brands fa-square-x-twitter"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
   
-</body>
+
 </x-app-layout>

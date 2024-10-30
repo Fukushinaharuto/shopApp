@@ -19,8 +19,13 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',          // 新しく追加したフィールド
+        'postal_code',
+        'prefecture',
+        'city',
+        'address_line',
+        'building',
         'password',
-        'is_admin',
     ];
 
     /**
