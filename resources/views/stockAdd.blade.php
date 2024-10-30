@@ -16,7 +16,6 @@
 <form action="{{ route('stockAdd') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="adds">
-
         <div class="add">
             <p><label for="name">商品名：</label></p>
             <p><input type="text" id="name" name="name" required></p>

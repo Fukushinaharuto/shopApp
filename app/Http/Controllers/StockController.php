@@ -291,7 +291,7 @@ class StockController extends Controller
         return redirect()->intended(route('stock.myCart'));
     }
     
-    
+
 
 
    
