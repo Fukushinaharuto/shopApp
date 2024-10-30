@@ -10,7 +10,7 @@
 <h3>顧客(未ログイン者)</h3>
 <ul>
     <li>新規登録</li>
-    <img src="/Users/haruto/shopApp/README-strage/stock-add.png">
+    <img src="README-strage/stock-add.png">
     <li>ログイン</li>
     <li>商品一覧の観覧</li>
     <li>商品詳細ページの観覧</li>
