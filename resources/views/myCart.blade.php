@@ -117,9 +117,9 @@ img{
 
 </style>
 
-<h1 class="Product-list">Purchase confirmed</h1>
+<h1 class="Product-list">Purchase Confirmed</h1>
 @if ($myCartStocks->isEmpty())
-<h1 class="Product-list">Purchase confirmation</h1>
+
     <div class="no-stock-area">
         <p class="no-stock">購入確認は空です。</p>
     </div>

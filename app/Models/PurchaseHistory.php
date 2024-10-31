@@ -11,4 +11,8 @@ class PurchaseHistory extends Model
 
     protected $fillable = ['user_id', 'items', 'total_price'];
     
+    public function stocks()
+    {
+        return $this->belongsToMany(Stock::class, 'purchase_history_stock', 'purchase_history_id', 'stock_id');
+    }
 }

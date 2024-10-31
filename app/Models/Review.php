@@ -9,12 +9,7 @@ class Review extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'stock_id',
-        'user_id',
-        'rating',
-        'comment',
-    ];
+    protected $fillable = ['user_id', 'stock_id', 'rating', 'comment'];
 
     // Stock（商品）モデルとのリレーション
     public function stock()

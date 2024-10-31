@@ -9,7 +9,7 @@ class Stock extends Model
 {
     use HasFactory;
 
-    protected $guarde= [
+    protected $guarded = [
         'id'
     ];
 
@@ -28,5 +28,9 @@ class Stock extends Model
     {
         return $this->hasMany(Review::class);
     }
-    // public function 
+
+    public function purchaseHistories()
+    {
+        return $this->belongsToMany(PurchaseHistory::class, 'purchase_history_stock', 'stock_id', 'purchase_history_id');
+    }
 }
