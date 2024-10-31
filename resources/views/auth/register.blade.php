@@ -1,24 +1,31 @@
 <x-guest-layout>
+    <div>(<span class="text-red-500 text-sm">*</span>)は記入必須です</div>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <div class="inline-flex items-center">
+                <x-input-label for="name" :value="__('Name')" /><span class="text-red-500 text-sm ml-1">*</span>
+            </div>
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
         <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
+            <div class="inline-flex items-center">
+                <x-input-label for="email" :value="__('Email')" /><span class="text-red-500 text-sm ml-1">*</span>
+            </div>
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Phone Number -->
         <div class="mt-4">
-            <x-input-label for="phone" :value="__('電話番号(-は不要です)')" />
+            <div class="inline-flex items-center">
+                <x-input-label for="phone" :value="__('電話番号(-は不要です)')" /><span class="text-red-500 text-sm ml-1">*</span>
+            </div>
             <x-text-input id="phone" class="block mt-1 w-full" type="tel" name="phone" :value="old('phone')" required />
             <x-input-error :messages="$errors->get('phone')" class="mt-2" />
         </div>
@@ -60,14 +67,18 @@
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <div class="inline-flex items-center">
+                <x-input-label for="password" :value="__('Password')" /><span class="text-red-500 text-sm ml-1">*</span>
+            </div>
             <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
         <!-- Confirm Password -->
         <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+            <div class="inline-flex items-center">
+                <x-input-label for="password_confirmation" :value="__('Confirm Password')" /><span class="text-red-500 text-sm ml-1">*</span>
+            </div>
             <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
